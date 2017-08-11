@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Reader {
 
-    public void sellers() throws SQLException {
+    public List<String> sellers() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/AuctionHouse", "root", "");
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Seller");
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -16,11 +16,10 @@ public class Reader {
             Seller seller = new Seller(resultSet.getInt(1), resultSet.getString(2));
             sellers.add(seller);
         }
-        List<String> listOfSellers = sellers.stream().map(element -> "Id = " + element.getId()+ " | Name = " + element.getName()).collect(Collectors.toList());
-        listOfSellers.forEach(System.out::println);
+        return sellers.stream().map(element -> "Id = " + element.getId()+ " | Name = " + element.getName()).collect(Collectors.toList());
     }
 
-    public void buyers() throws SQLException {
+    public List<String> buyers() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/AuctionHouse", "root", "");
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Buyer");
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -29,11 +28,10 @@ public class Reader {
             Buyer buyer = new Buyer(resultSet.getInt(1), resultSet.getString(2));
             buyers.add(buyer);
         }
-        List<String> listOfSellers = buyers.stream().map(element -> "Id = " + element.getId()+ " | Name = " + element.getName()).collect(Collectors.toList());
-        listOfSellers.forEach(System.out::println);
+        return buyers.stream().map(element -> "Id = " + element.getId()+ " | Name = " + element.getName()).collect(Collectors.toList());
     }
 
-    public void products() throws SQLException {
+    public List<String> products() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/AuctionHouse", "root", "");
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM product");
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -42,13 +40,12 @@ public class Reader {
             Product product = new Product(resultSet.getInt(1), resultSet.getString(2), resultSet.getInt(3));
             products.add(product);
         }
-        List<String> listOfSellers = products.stream().map(element -> "Id = " + element.getId() +
+        return products.stream().map(element -> "Id = " + element.getId() +
                 " | Name = " + element.getName() + " | Seller`s Id = " + element.getSellerId())
                 .collect(Collectors.toList());
-        listOfSellers.forEach(System.out::println);
     }
 
-    public void bids() throws SQLException {
+    public List<String> bids() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/AuctionHouse", "root", "");
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM bid");
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -61,14 +58,16 @@ public class Reader {
                     resultSet.getInt(9));
             bids.add(bid);
         }
-        List<String> listOfSellers = bids.stream().map(element -> "Id = " + element.getId()+
+        return bids.stream().map(element -> "Id = " + element.getId()+
                 " | Name = " + element.getName() + " | Product`s Id = " + element.getProductId() +
                 " | Buyer`s Id = " + element.getBuyerId() + " | First Bet = " + element.getFirstBet() +
                 " | Second Bet = " + element.getSecondBet() + " | Third Bet = " + element.getThirdBet() +
                 " | Fourth Bet = " +element.getFourthBet() + " | Last Bet = " + element.getLastBet())
                 //.filter(element -> !element.contains("0"))
                 .collect(Collectors.toList());
-        listOfSellers.forEach(System.out::println);
     }
 
+    public void print(List<String> list){
+        list.forEach(System.out::println);
+    }
 }

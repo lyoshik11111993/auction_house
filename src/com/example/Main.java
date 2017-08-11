@@ -7,12 +7,12 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         Reader reader = new Reader();
         System.out.println("SELLERS:");
-        reader.sellers();
+        reader.print(reader.sellers());
         System.out.println("BUYERS:");
-        reader.buyers();
+        reader.print(reader.buyers());
         System.out.println("PRODUCTS:");
-        reader.products();
+        reader.print(reader.products());
         System.out.println("BIDS:");
-        reader.bids();
+        reader.print(reader.bids());
     }
 }
