@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Reader {
-
     public List<String> sellers() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/AuctionHouse", "root", "");
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Seller");
@@ -56,14 +55,13 @@ public class Reader {
                     resultSet.getInt(5), resultSet.getInt(6),
                     resultSet.getInt(7), resultSet.getInt(8),
                     resultSet.getInt(9));
-            bids.add(bid);
+                bids.add(bid);
         }
         return bids.stream().map(element -> "Id = " + element.getId()+
                 " | Name = " + element.getName() + " | Product`s Id = " + element.getProductId() +
                 " | Buyer`s Id = " + element.getBuyerId() + " | First Bet = " + element.getFirstBet() +
                 " | Second Bet = " + element.getSecondBet() + " | Third Bet = " + element.getThirdBet() +
                 " | Fourth Bet = " +element.getFourthBet() + " | Last Bet = " + element.getLastBet())
-                //.filter(element -> !element.contains("0"))
                 .collect(Collectors.toList());
     }
 
