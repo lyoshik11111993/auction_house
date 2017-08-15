@@ -5,14 +5,20 @@ import java.sql.SQLException;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        Reader reader = new Reader();
+        Printer printer = new Printer();
+        SQLRequest sqlRequest = new SQLRequest();
+        SellerConverter sellerConverter = new SellerConverter();
+        BuyerConverter buyerConverter = new BuyerConverter();
+        ProductConverter productConverter = new ProductConverter();
+        BidConverter bidConverter = new BidConverter();
+
         System.out.println("SELLERS:");
-        reader.print(reader.sellers());
+        printer.print(sellerConverter.convert(sqlRequest.executeQuery("SELECT * FROM Seller")));
         System.out.println("BUYERS:");
-        reader.print(reader.buyers());
+        printer.print(buyerConverter.convert(sqlRequest.executeQuery("SELECT * FROM Buyer")));
         System.out.println("PRODUCTS:");
-        reader.print(reader.products());
+        printer.print(productConverter.convert(sqlRequest.executeQuery("SELECT * FROM product")));
         System.out.println("BIDS:");
-        reader.print(reader.bids());
+        printer.print(bidConverter.convert(sqlRequest.executeQuery("SELECT * FROM bid")));
     }
 }

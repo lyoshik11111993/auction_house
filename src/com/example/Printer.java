@@ -5,7 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Reader {
+public class Printer<T> {
+
     public List<String> sellers() throws SQLException {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/AuctionHouse", "root", "");
         PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM Seller");
@@ -50,22 +51,17 @@ public class Reader {
         ResultSet resultSet = preparedStatement.executeQuery();
         List<Bid> bids = new ArrayList<>();
         while (resultSet.next()){
-            Bid bid = new Bid(resultSet.getInt(1), resultSet.getString(2),
-                    resultSet.getInt(3), resultSet.getInt(4),
-                    resultSet.getInt(5), resultSet.getInt(6),
-                    resultSet.getInt(7), resultSet.getInt(8),
-                    resultSet.getInt(9));
+            Bid bid = new Bid(resultSet.getInt(1), resultSet.getInt(2),
+                    resultSet.getInt(3), resultSet.getInt(4));
                 bids.add(bid);
         }
         return bids.stream().map(element -> "Id = " + element.getId()+
-                " | Name = " + element.getName() + " | Product`s Id = " + element.getProductId() +
-                " | Buyer`s Id = " + element.getBuyerId() + " | First Bet = " + element.getFirstBet() +
-                " | Second Bet = " + element.getSecondBet() + " | Third Bet = " + element.getThirdBet() +
-                " | Fourth Bet = " +element.getFourthBet() + " | Last Bet = " + element.getLastBet())
+                " | Name = " + element.getSize() + " | Product`s Id = " + element.getProductId() +
+                " | Buyer`s Id = " + element.getBuyerId() + " | First Bet = ")
                 .collect(Collectors.toList());
     }
 
-    public void print(List<String> list){
+    public void print(List<T> list){
         list.forEach(System.out::println);
     }
 }

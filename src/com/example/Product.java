@@ -22,4 +22,9 @@ public class Product {
     public int getSellerId(){
         return sellerId;
     }
+
+    @Override
+    public String toString(){
+        return "Id = " + getId()+ " | Name = " + getName() + " | Seller`s Id = " + getSellerId();
+    }
 }

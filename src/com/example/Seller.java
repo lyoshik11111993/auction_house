@@ -16,4 +16,9 @@ public class Seller {
     public String getName(){
         return name;
     }
+
+    @Override
+    public String toString(){
+        return "Id = " + getId()+ " | Name = " + getName();
+    }
 }

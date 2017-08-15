@@ -2,34 +2,24 @@ package com.example;
 
 public class Bid {
     private int id;
-    private String name;
+    private int size;
     public int productId;
     public int buyerId;
-    public int firstBet;
-    public int secondBet;
-    public int thirdBet;
-    public int fourthBet;
-    public int lastBet;
 
-    public Bid(int id, String name, int productId, int buyerId, int firstBet, int secondBet,
-               int thirdBet, int fourthBet, int lastBet){
+
+    public Bid(int id, int size, int productId, int buyerId){
         this.id = id;
-        this.name = name;
+        this.size = size;
         this.productId = productId;
         this.buyerId = buyerId;
-        this.firstBet = firstBet;
-        this.secondBet = secondBet;
-        this.thirdBet = thirdBet;
-        this.fourthBet = fourthBet;
-        this.lastBet = lastBet;
     }
 
     public int getId(){
         return id;
     }
 
-    public String getName(){
-        return name;
+    public int getSize(){
+        return size;
     }
 
     public int getProductId() {
@@ -40,23 +30,9 @@ public class Bid {
         return buyerId;
     }
 
-    public int getFirstBet() {
-        return firstBet;
-    }
-
-    public int getSecondBet() {
-        return secondBet;
-    }
-
-    public int getThirdBet() {
-        return thirdBet;
-    }
-
-    public int getFourthBet() {
-        return fourthBet;
-    }
-
-    public int getLastBet() {
-        return lastBet;
+    @Override
+    public String toString(){
+        return "Id = " + getId()+ " | Bid`s Size = " + getSize() +
+                " | Product`s Id = " + getProductId() + " | Buyer`s Id = " + getBuyerId();
     }
 }
