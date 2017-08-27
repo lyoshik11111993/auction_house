@@ -1,6 +1,12 @@
 package com.example;
 
+import com.example.Converters.BidConverter;
+import com.example.Converters.BuyerConverter;
+import com.example.Converters.ProductConverter;
+import com.example.Converters.SellerConverter;
+
 import java.sql.SQLException;
+import java.util.Scanner;
 
 public class Main {
 
@@ -11,7 +17,10 @@ public class Main {
         BuyerConverter buyerConverter = new BuyerConverter();
         ProductConverter productConverter = new ProductConverter();
         BidConverter bidConverter = new BidConverter();
-
+        Menu menu = new Menu();
+        menu.menubar();
+        //sqlRequest.reset();
+        System.out.println("There are all items of auction: ");
         System.out.println("SELLERS:");
         printer.print(sellerConverter.convert(sqlRequest.executeQuery("SELECT * FROM Seller")));
         System.out.println("BUYERS:");

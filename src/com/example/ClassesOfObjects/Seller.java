@@ -1,10 +1,10 @@
-package com.example;
+package com.example.ClassesOfObjects;
 
-public class Buyer {
+public class Seller {
     private int id;
     private String name;
 
-    public Buyer(int id, String name){
+    public Seller(int id, String name){
         this.id = id;
         this.name = name;
     }

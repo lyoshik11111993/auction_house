@@ -1,4 +1,4 @@
-package com.example;
+package com.example.ClassesOfObjects;
 
 public class Bid {
     private int id;
