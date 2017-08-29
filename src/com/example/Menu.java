@@ -14,16 +14,19 @@ public class Menu {
     BuyerConverter buyerConverter = new BuyerConverter();
     ProductConverter productConverter = new ProductConverter();
     BidConverter bidConverter = new BidConverter();
+    Printer printer = new Printer();
+    SQLRequest sqlRequest = new SQLRequest();
 
     public Menu() throws SQLException {
     }
 
-    public void menubar() {
-        System.out.println("Hello! Welcome to our auction house! Make your choise: ");
-        System.out.println("Press '1' for insert new sellers");
-        System.out.println("Press '2' for insert new buyers");
-        System.out.println("Press '3' for insert new products");
-        System.out.println("Press '4' for insert new bids");
+    public void menubar() throws SQLException {
+        System.out.println("Press '1' to insert new sellers");
+        System.out.println("Press '2' to insert new buyers");
+        System.out.println("Press '3' to insert new products");
+        System.out.println("Press '4' to insert new bids");
+        System.out.println("Press '5' to show all categories");
+        System.out.println("Press '6' to remove your additions");
         int selecter = scanner.nextInt();
         switch (selecter) {
             case 1:
@@ -51,6 +54,20 @@ public class Menu {
                 System.out.println("Add Buyer`s Id: ");
                 String newBuyerId = scanner.next();
                 bidConverter.bidInsert(newBid, newProductId, newBuyerId);
+                break;
+            case 5:
+                System.out.println("There are all items of auction: ");
+                System.out.println("SELLERS:");
+                printer.print(sellerConverter.convert(sqlRequest.executeQuery("SELECT * FROM Seller")));
+                System.out.println("BUYERS:");
+                printer.print(buyerConverter.convert(sqlRequest.executeQuery("SELECT * FROM Buyer")));
+                System.out.println("PRODUCTS:");
+                printer.print(productConverter.convert(sqlRequest.executeQuery("SELECT * FROM product")));
+                System.out.println("BIDS:");
+                printer.print(bidConverter.convert(sqlRequest.executeQuery("SELECT * FROM bid")));
+                break;
+            case 6:
+                sqlRequest.reset();
                 break;
             default:
                 System.out.println("Enter right command!");

@@ -28,6 +28,6 @@ public class BidConverter {
     }
 
     public void bidInsert(String x, String y, String z){
-        sqlRequest.update("INSERT INTO Bid (`Name`, `product_id`, `buyer_id`) VALUES (?, ?, ?)", x, y, z);
+        sqlRequest.update("INSERT INTO Bid (`size`, `product_id`, `buyer_id`) VALUES (?, ?, ?)", x, y, z);
     }
 }

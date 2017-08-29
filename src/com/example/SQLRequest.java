@@ -66,15 +66,14 @@ public class SQLRequest {
         }
     }
 
-    //Method for resetting all my additions. May be called in case necessity.
     public void reset() throws SQLException {
-        PreparedStatement sellerReset = connection.prepareStatement("DELETE FROM Seller WHERE ID>5");
-        sellerReset.executeUpdate();
-        PreparedStatement buyerReset = connection.prepareStatement("DELETE FROM Buyer WHERE ID>10");
-        buyerReset.executeUpdate();
         PreparedStatement productReset = connection.prepareStatement("DELETE FROM Product WHERE ID>10");
         productReset.executeUpdate();
         PreparedStatement bidReset = connection.prepareStatement("DELETE FROM Bid WHERE ID>10");
         bidReset.executeUpdate();
+        PreparedStatement sellerReset = connection.prepareStatement("DELETE FROM Seller WHERE ID>5");
+        sellerReset.executeUpdate();
+        PreparedStatement buyerReset = connection.prepareStatement("DELETE FROM Buyer WHERE ID>10");
+        buyerReset.executeUpdate();
     }
 }
